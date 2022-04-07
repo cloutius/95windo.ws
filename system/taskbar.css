@@ -1,0 +1,143 @@
+@font-face {
+  font-family: notbold;
+  src: url('fonts/ms_sans_serif.woff2');
+}
+@font-face {
+  font-family: bold;
+  src: url('fonts/ms_sans_serif_bold.woff2');
+}
+
+/* Taskbar */
+#win_taskbar {
+	position: fixed;
+	width: 100%;
+	height: 33px;
+	bottom: 0px;
+	background-color: #C0C0C0;
+	border: 1px white outset;
+	z-index: 1000; /* required for taskbar to stay on top */
+}
+#win_start_button {
+	width: 63px;
+	height: 23px;
+	background-color: #C0C0C0;
+	border-top: 1px solid white;
+	border-left: 1px solid white;
+	border-bottom: 2px ridge black;
+	border-right: 2px ridge black;
+	position: relative;
+	top: 3px;
+	left: 4px;
+	font-family: bold;
+	font-size: 10pt;
+}
+.win_start_button_depressed {
+	border-top: 2px groove black !important;
+	border-left: 2px groove black !important;
+	border-bottom: 2px groove white !important;
+	border-right: 2px groove white !important;
+}
+#win_start_icon {
+	position: relative;
+	top: 3px;
+	left: 4px;
+	
+}
+#win_start_text {
+	position: relative;
+	top: 0px;
+	left: 3px;
+	cursor: default;
+}
+/* Taskbar Buttons */
+
+#win_tb_placeholder {
+	position: relative;
+	left: 60px;
+	bottom: 21px;
+	height: 24px;
+}
+.win_tb_button {
+	width: 160px;
+	height: 23px;
+	margin-right: 3px;
+	/*position: absolute;*/
+	position: relative;
+	display: inline-block;
+	top: -2px;
+	right: -16px;
+	font-family: bold;
+	font-size: 8pt;
+}
+.win_tb_button_active {
+	background-image: url("images/checkerboard.png");
+	border-bottom: 1px solid white;
+	border-right: 1px solid white;
+	border-top: 2px groove black;
+	border-left: 2px groove black;
+	font-weight: bold;
+}
+.win_tb_button_inactive,
+.win_tb_button_start {
+	background-color: #C0C0C0 !important;
+	background-image: none !important;
+	border-top: 1px solid white !important;
+	border-left: 1px solid white !important;
+	border-bottom: 2px ridge black !important;
+	border-right: 2px ridge black !important;
+	font-weight: normal !important;
+}
+/*#win_tb_win_1 {
+	left: 60px;
+}
+#win_tb_win_2 {
+	left: 225px;
+}*/
+.win_tb_icon,
+.win_tb_icon_noicon {
+	position: relative;
+	top: 3px;
+	left: 2px;
+	height: 16px;
+}
+.win_tb_icon {
+	width: 16px;
+}
+.win_tb_icon > img {
+	width: 16px;
+	height: 16px;
+}
+.win_tb_icon_noicon > img {
+	height: 16px;
+}
+.win_tb_text,
+.win_tb_text_noicon {
+	position: absolute;
+	cursor: default;
+	top: 3px;
+}
+.win_tb_text {
+	font-size: 12px;
+	left: 22px;
+	top: 5px
+}
+.win_tb_text_noicon {
+	left: 3px;
+}
+/* System Tray */
+#win_systray {
+	position: absolute;
+	right: 4px;
+	top: 3px;
+	width: 70px;
+	height: 26px;
+	border: 1px inset white;
+	background-color: #C0C0C0;
+	text-align: center;
+}
+#win_clock {
+	font-size: 10pt;
+	position: relative;
+	top: 4px;
+	cursor: default;
+}

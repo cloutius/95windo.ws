@@ -1,0 +1,358 @@
+@font-face {
+  font-family: notbold;
+  src: url('fonts/ms_sans_serif.woff2');
+}
+@font-face {
+  font-family: bold;
+  src: url('fonts/ms_sans_serif_bold.woff2');
+}
+.notepad_button { 
+    background: transparent;
+	width: 54px;
+	height: 54px;
+	position: relative;
+	top: 5px;
+	left: 5px;
+	z-index: 1;
+	cursor:pointer;
+}
+.tetris_button { 
+    background: transparent;
+	width: 54px;
+	height: 54px;
+	position: relative;
+	top: 5px;
+	left: 5px;
+	z-index: 0;
+	cursor:pointer;
+}
+.ms_button { 
+    background: transparent;
+	width: 64px;
+	height: 64px;
+	position: relative;
+	top: 5px;
+	left: 5px;
+	z-index: 0;
+}
+.mp_button { 
+    background: transparent;
+	width: 64px;
+	height: 64px;
+	position: relative;
+	top: 5px;
+	left: 5px;
+	z-index: 0;
+}
+.readme_button { 
+    background: transparent;
+	width: 46px;
+	height: 54px;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	z-index: 0;
+	cursor:pointer;
+}
+.spacejam_button { 
+    background: transparent;
+	width: 54px;
+	height: 54px;
+	position: relative;
+	top: 5px;
+	left: 10px;
+	z-index: 0;
+	cursor:pointer;
+}
+.bb_button { 
+    background: transparent;
+	width: 54px;
+	height: 54px;
+	position: relative;
+	top: 5px;
+	left: 10px;
+	z-index: 0;
+}
+.paint_button { 
+    background: transparent;
+	width: 54px;
+	height: 54px;
+	position: relative;
+	top: 5px;
+	left: 10px;
+	z-index: 0;
+	cursor:pointer;
+}
+.spotify_button { 
+    background: transparent;
+	width: 54px;
+	height: 54px;
+	position: relative;
+	top: 5px;
+	left: 10px;
+	z-index: 0;
+	cursor:pointer;
+}
+.comment_button { 
+    background: transparent;
+	width: 54px;
+	height: 54px;
+	position: relative;
+	top: 5px;
+	left: 10px;
+	z-index: 0;
+	cursor:pointer;
+}
+.folder_button { 
+    background: transparent;
+	width: 52px;
+	height:48px;
+	position: relative;
+	top: 5px;
+	left: 10px;
+	z-index: 0;
+	cursor:pointer;
+}
+.calender_button { 
+    background: transparent;
+	width: 54px;
+	height: 54px;
+	position: relative;
+	top: 5px;
+	left: 10px;
+	z-index: 0;
+}
+/* Taskbar */
+#win_desktop {
+	position: relative;
+	height: 0px;
+	bottom: 0px;
+	background-color: transparent;
+	z-index: 900;
+}
+#notepad_icon {
+	width: 46px;
+	height: 54px;
+	position: relative;
+	cursor: pointer;
+	top: 5px;
+	left: 15px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 10pt;
+	z-index: 1;
+}
+#notepad_text {
+	font: bold;
+	position: absolute;
+	top: 70px;
+	left: -7px;
+	color: white;
+	font-size: 12pt;
+	z-index: 1;
+}
+#spacejam_icon {
+	width: 46px;
+	height: 54px;
+	position: relative;
+	cursor: pointer;
+	top: 210px;
+	left: 15px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 10pt;
+	z-index: 0;
+}
+#spacejam_text {
+	font: bold;
+	position: absolute;
+	top: 80px;
+	left: 5px;
+	color: white;
+	font-size: 12pt;
+	z-index: 0;
+}
+#paint_icon {
+	width: 46px;
+	height: 54px;
+	position: relative;
+	cursor: pointer;
+	top: 320px;
+	left: 10px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 10pt;
+	z-index: 0;
+}
+#paint_text {
+	font: bold;
+	position: absolute;
+	top: 80px;
+	left: 20px;
+	color: white;
+	font-size: 12pt;
+	z-index: 0;
+}
+#spotify_icon {
+	width: 46px;
+	height: 54px;
+	position: relative;
+	cursor: pointer;
+	top: 430px;
+	left: 10px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 10pt;
+	z-index: 0;
+}
+#folder_icon {
+	width: 44px;
+	height: 48px;
+	position: relative;
+	cursor: pointer;
+	top: 540px;
+	left: 10px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 10pt;
+	z-index: 0;
+}
+#folder_text {
+	font: bold;
+	position: absolute;
+	top: 75px;
+	left: 15px;
+	color: white;
+	font-size: 12pt;
+	z-index: 0;
+}
+#comment_icon {
+	width: 46px;
+	height: 54px;
+	position: relative;
+	cursor: pointer;
+	top: 430px;
+	left: 10px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 10pt;
+	z-index: 0;
+}
+#calender_text {
+	font: bold;
+	position: absolute;
+	top: 80px;
+	left: 17px;
+	color: white;
+	font-size: 12pt;
+	z-index: 0;
+}
+#calender_icon {
+	width: 46px;
+	height: 54px;
+	position: relative;
+	cursor: pointer;
+	top: 430px;
+	left: 10px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 10pt;
+	z-index: 0;
+}
+#spotify_text {
+	font: bold;
+	position: absolute;
+	top: 80px;
+	left: 17px;
+	color: white;
+	font-size: 12pt;
+	z-index: 0;
+}
+#comment_text {
+	font: bold;
+	position: absolute;
+	top: 80px;
+	left: 0px;
+	color: white;
+	font-size: 12pt;
+	z-index: 0;
+}
+#tetris_icon {
+	width: 46px;
+	height: 54px;
+	position: relative;
+	cursor: pointer;
+	top: 420px;
+	left: 20px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 10pt;
+	z-index: 0;
+}
+#tetris_text {
+	font: bold;
+	position: absolute;
+	top: 70px;
+	left: 12px;
+	color: white;
+	font-size: 12pt;
+	z-index: 0;
+}
+#ms_icon {
+	width: 46px;
+	height: 54px;
+	position: relative;
+	cursor: pointer;
+	top: 210px;
+	left: 15px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 10pt;
+	z-index: 0;
+}
+#ms_text {
+	font: bold;
+	position: absolute;
+	top: 80px;
+	left: -4px;
+	color: white;
+	font-size: 12pt;
+	z-index: 0;
+}
+#readme_icon {
+	width: 46px;
+	height: 54px;
+	position: relative;
+	cursor: pointer;
+	top: 110px;
+	left: 15px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 10pt;
+	z-index: 0;
+}
+#readme_text {
+	font: bold;
+	position: absolute;
+	top: 67px;
+	left: 10px;
+	cursor: default;
+	color: white;
+	font-size: 12pt;
+	z-index: 0;
+}
+
+.win_desktop_button_depressed {
+	background-image: url("images/checkerboard.png");
+	border-top: 4px dotted blue;
+	border-left: 4px dotted blue;
+	border-top: 4px dotted blue;
+	border-bottom: 4px dotted blue;
+/* Taskbar Buttons */
+}
+#win_tb_placeholder {
+	position: relative;
+	left: 60px;
+	bottom: 21px;
+	height: 24px;
+}
+#win_desktop_icon,
+#win_desktop,
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

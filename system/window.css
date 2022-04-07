@@ -1,0 +1,149 @@
+@font-face {
+  font-family: notbold;
+  src: url('fonts/ms_sans_serif.woff2');
+}
+@font-face {
+  font-family: bold;
+  src: url('fonts/ms_sans_serif_bold.woff2');
+}
+#window_1 {
+	width: 500px;
+	height: 500px;
+	/*position: absolute;
+	left: 220px;
+	top: 47px;*/
+	background-color: transparent;
+	/*z-index: 901;*/
+	cursor: grab;
+}
+.win_window {
+	border-image-slice: 4 4 4 4;
+	border-image-width: 4px 4px 4px 4px;
+	border-image-outset: 4px 4px 4px 4px;
+	border-image-repeat: stretch stretch;
+	border-image-source: url("images/border.png");
+	/*display: none;*/
+	position: absolute !important; /* must be important because jQuery UI will set it to rel and bad things will happen */
+	left: 8px;
+	top: 8px;
+	height: 300px;
+	width: 300px;
+	padding: 0px;
+	cursor: grab;
+}
+.win_window_maximized {
+	width: 100% !important;
+	height: 100% !important;
+	border: 0px;
+	left: 0px !important;
+	top: 0px !important;
+}
+.win_window_minimized {
+	display: none !important;
+}
+.win_window_active {
+	z-index: 1000;
+}
+.win_window_inactive {
+	z-index: 900;
+}
+.win_titlebar {
+	position: relative;
+	width: 99%;
+	height: 25px;
+	border: 5px solid;
+	bottom: 17px;
+    border-top-color: #C0C0C0;
+    border-right-color: #C0C0C0;
+    border-bottom-color: #C0C0C0;
+    border-left-color: #C0C0C0;
+	padding: 0px 0px;
+	cursor: grab;
+}
+.win_titlebar:after {
+	content: '';	
+	position: absolute;
+	width: 101%;
+	top: -4px;
+	left: -3px;
+	border: 2px solid;
+	border-top-color: white;
+    border-right-color: black;
+    border-left-color: white;
+	border-bottom-color: transparent;
+	padding: 20px 0px;
+}
+.win_titb_icon {
+	position: relative;
+	top: 4px;
+	left: 5px;
+	width: 16px;
+	height: 16px;
+}
+.win_titb_icon > img {
+	width: 16px;
+	height: 16px;
+}
+.win_titb_text {
+	position: absolute;
+	font-family: "bold";
+	font-size: 10pt;
+	font-weight: bold;
+	left: 25px;
+	top: 6px;
+	cursor: grab;
+}
+.win_titb_text_noicon {
+	left: 3px !important;
+}
+.win_titb_active {
+	color: white;
+	background-color: #0000AA;
+}
+.win_titb_inactive,
+.win_titb_start {
+	color: lightgray !important;
+	background-color: gray !important;
+}
+.win_titb_controls {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+.win_titb_min {
+	position: absolute;
+	top: 5px;
+	right: 36px;
+}
+.win_titb_max,
+.win_titb_max_dis {
+	position: absolute;
+	top: 5px;
+	right: 20px;
+}
+.win_titb_close {
+	position: absolute;
+	top: 5px;
+	right: 2px;
+	z-index: 1;
+}
+.win_widget_htmltarget {
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+	left: 0px;
+}
+.win_window_iframe {
+	width: 100%;
+	height: calc(100% - 18px);
+	border: none;	
+}
+.notepadtextarea {
+	z-index: 4;
+}
+.readmetextarea {
+	z-index: 0;
+}
+.notepadscrollwidget {
+	z-index: 5;
+}

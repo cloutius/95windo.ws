@@ -1,0 +1,1156 @@
+/*
+
+WARNING: All CSS in this document will run ROOT LEVEL in the emulator.
+         You MUST prefix your selectors with win_wid_<NAME>_
+
+*/
+
+/*
+.win_titlebar,
+.win_titb_text,
+.win_titb_icon,
+#win_wid_run_container,
+#win_taskbar,
+#win_start,
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.win_underline {
+	text-decoration: underline;
+}
+*/
+@font-face {
+  font-family: notbold;
+  src: url('fonts/ms_sans_serif.woff2');
+}
+@font-face {
+  font-family: bold;
+  src: url('fonts/ms_sans_serif_bold.woff2');
+}
+.win_widget {
+	border-image-slice: 4 4 4 4;
+	border-image-width: 4px 4px 4px 4px;
+	border-image-outset: 4px 4px 4px 4px;
+	border-image-repeat: stretch stretch;
+	border-image-source: url("images/border.png");
+	/*display: none;*/
+	position: absolute !important; /* must be important because jQuery UI will set it to rel and bad things will happen */
+}
+/* THE RUN DIALOG */
+.win_wid_run_dialog {
+	/*left: 8px !important;
+	bottom: 8px !important;*/
+	position: absolute !important;	
+	border-image-slice: 4 4 4 4;
+	border-image-width: 4px 4px 4px 4px;
+	border-image-outset: 4px 4px 4px 4px;
+	border-image-repeat: stretch stretch;
+	border-image-source: url("images/border.png");
+	/*display: none;*/
+	position: absolute !important; /* must be important because jQuery UI will set it to rel and bad things will happen */
+	left: 8px;
+	bottom: 8px !important;
+	padding: 0px;
+}
+#win_wid_run_tgt {
+	width: 0px;
+	height: 0px;
+}
+#win_wid_run_container {
+	position:absolute;
+	width: 345px;
+	height: 100%;
+	left:0px;
+	background-color: #C0C0C0;
+	cursor: default;
+	z-index: 1;
+}
+#win_wid_run_container:after {
+	content: '';
+	position:absolute;
+	width:328;
+	left: 1px;
+	top: -2px;
+	border: 2px solid;
+    border-right-color: black;
+	border-top-color: transparent;
+	border-left-color: white;
+	border-bottom-color: black;
+	padding: 69px 171px;
+	z-index: 1;
+}
+#win_wid_run_icondiv {
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 19px;
+	left: 12px;
+}
+#win_wid_run_text {
+	font-family: bold;
+	font-size: 8pt;
+	position: absolute;
+	left: 52px;
+	top: 9px;
+}
+#win_wid_run_opent {
+	position: absolute;
+	font-family: notbold;
+	font-size: 8pt;
+	top: 59px;
+	left: 12px;
+}
+#win_wid_run_input {
+	position: absolute;
+	width: 272px;
+	right: 12px;
+	top: 66px;
+}
+#win_wid_run_obutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 174px;
+	bottom: 14px;
+	font-family: notbold;
+	font-size: 8pt;
+}
+#win_wid_cal_obutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 174px;
+	bottom: 14px;
+	font-family: notbold;
+	font-size: 8pt;
+}
+.win_wid_run_cbutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 93px;
+	bottom: 14px;
+	font-family: notbold;
+	font-size: 8pt;
+}
+.win_wid_run_bbutton {
+	position: absolute;
+	height: 23px;
+	width: 75px;
+	right: 12px;
+	bottom: 14px;
+	font-family: notbold;
+	font-size: 8pt;
+}
+/* WINVER DIALOG */
+#win_wid_winver_container {
+	width: 100%;
+	height: 100%;
+	background-color: #C0C0C0;
+	cursor: default;
+}
+.win_wid_winver_text {
+	position: absolute;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+	width: 100%;
+	text-align: center;
+}
+#win_wid_winver_name {
+	top: 11px;
+}
+#win_wid_winver_icon {
+	position: absolute;
+	left: 141px;
+	top: 36px;
+}
+#win_wid_winver_copy {
+	top: 79px;
+}
+#win_wid_winver_ok {
+	position: absolute;
+	width: 48px;
+	height: 26px;
+	bottom: 8px;
+	left: 126px;
+}
+#win_wid_notepad_tgt {
+	width: 0px;
+	height: 0px;
+}
+#win_wid_notepad_container {
+	background-color: #C0C0C0;
+	width: 643px;
+	height: 398px;
+	cursor: default;
+	border: 2px solid;
+    border-right-color: black;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	padding: 0px 0px;
+}
+#win_wid_notepad_container_inside {
+	position: absolute;
+	left: 5px;
+	top: 20px;
+	width: 631px;
+	height: 364px;
+	border: 2px solid;
+	border-top-width: 1px;
+	border-top-color: black;
+    border-right-color: #C0C0C0;
+	border-bottom-width: 1px;
+    border-bottom-color: white;
+    border-left-color: black;
+	padding: 1px 0px;
+	z-index: 3;
+}
+.win_wid_notepad_container_text {
+	position: absolute;
+	font-family: notbold;
+	font-size: 14px;
+	left: 5px;
+	top: 25px;
+	z-index: 3;
+}
+.border_test {
+	position: absolute;
+	left: -2px;
+	top: -19px;
+	width: 632px;
+	border: 1px solid;
+	border-bottom-color: gray;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	z-index: 3;
+}
+	#win_wid_notepad_container_inside:after {
+	content: '';	
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	width: 632px;
+	height: 358px;
+	border: 1px solid;
+	border-top-width: 5px;
+	border-top-color: #c0c0c0;
+	border-right-color: white;
+    border-bottom-color: white;
+	z-index: 3;
+	}
+#win_wid_notepad_container_inside:after {	
+	position: absolute;
+	top: -29px;
+	left: -6px;
+	height: 364px;
+	width: 635px;
+	border: 2px solid white;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-top-color: transparent;
+	border-right-color: transparent;
+    border-bottom-color: transparent;
+	padding: 19px 0px;
+	z-index: 3;
+	
+}
+#win_wid_notepad_icondiv {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 19px;
+	left: 12px;
+}
+#win_wid_notepad_text {
+	font-family: notbold;
+	font-size: 10pt;
+	position: absolute;
+	left: 5px;
+	top: -15px;
+	z-index: 10;
+}
+
+#win_wid_notepad_input {
+	position: absolute;
+	width: 417px;
+	height: 345px;
+	left: -2px;
+	top: 1px;
+	border: transparent;
+}
+#win_wid_notepad_obutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 174px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_notepad_cbutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 93px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_notepad_bbutton {
+	position: absolute;
+	height: 23px;
+	width: 75px;
+	right: 12px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+#win_wid_readme_tgt {
+	width: 0px;
+	height: 0px;
+}
+#win_wid_readme_container {
+	background-color: #C0C0C0;
+	width: 643px;
+	height: 370px;
+	cursor: default;
+	border: 2px solid;
+    border-right-color: black;
+	border-left-width: 0px;
+	border-top-width: 0px;
+}
+#win_wid_readme_container_inside {
+	position: absolute;
+	left: 5px;
+	top: -1px;
+	width: 631px;
+	height: 364px;
+	border: 2px solid;
+	border-top-width: 1px;
+	border-top-color: black;
+    border-right-color: #C0C0C0;
+	border-bottom-width: 1px;
+    border-bottom-color: white;
+    border-left-color: black;
+	padding: 1px 0px;
+	z-index: 3;
+}
+	#win_wid_readme_container_inside:after {
+	content: '';	
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	width: 632px;
+	height: 358px;
+	border: 1px solid;
+	border-top-width: 1px;
+	border-top-color: gray;
+	border-right-color: white;
+    border-bottom-color: white;
+	z-index: 3;
+	}
+#win_wid_readme_container_inside:after {	
+	position: absolute;
+	top: -1px;
+	left: -6px;
+	height: 364px;
+	width: 635px;
+	border: 2px solid white;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-top-color: transparent;
+	border-right-color: white;
+    border-bottom-color: transparent;
+	z-index: 3;
+	
+}
+#win_wid_readme_icondiv {
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 19px;
+	left: 12px;
+}
+#win_wid_readme_text {
+	text-align:center;
+	font-family: bold;
+	font-size: 8pt;
+	position: absolute;
+}
+
+#win_wid_readme_input {
+	position: absolute;
+	width: 417px;
+	height: 345px;
+	left: -2px;
+	top: 1px;
+	border: transparent;
+}
+#win_wid_readme_obutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 174px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_readme_cbutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 93px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_readme_bbutton {
+	position: absolute;
+	height: 23px;
+	width: 75px;
+	right: 12px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+#readmefile {
+  color: #51A9FB;
+  z-index: 10;
+}
+#readmefile:hover {
+  color: orange;
+  text-decoration: none;
+  -webkit-transition: color 200ms;
+  cursor: default;
+}
+#win_wid_readme_tgt {
+	width: 0px;
+	height: 0px;
+}
+#win_wid_readme_container {
+	background-color: #C0C0C0;
+	width: 643px;
+	height: 370px;
+	cursor: default;
+}
+#win_wid_readme_container_inside {
+	position: absolute;
+	left: 5px;
+	top: -1px;
+	width: 631px;
+	height: 364px;
+	z-index: 3;
+	
+}
+#win_wid_readme_icondiv {
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 19px;
+	left: 12px;
+}
+#win_wid_readme_text {
+	text-align:center;
+	font-family: bold;
+	font-size: 8pt;
+	position: absolute;
+	z-index: 10;
+}
+
+#win_wid_readme_input {
+	position: absolute;
+	width: 417px;
+	height: 345px;
+	left: -2px;
+	top: 1px;
+	border: transparent;
+}
+#win_wid_readme_obutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 174px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_readme_cbutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 93px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_readme_bbutton {
+	position: absolute;
+	height: 23px;
+	width: 75px;
+	right: 12px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+#win_wid_conpan_tgt {
+	width: 0px;
+	height: 0px;
+}
+#win_wid_conpan_container {
+	background-color: #C0C0C0;
+	width: 466px;
+	height: 420px;
+	cursor: default;
+	border: 2px solid;
+    border-right-color: black;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	padding: 0px 0px;
+}
+#win_wid_conpan_container_inside {
+	position: absolute;
+	left: 5px;
+	top: 20px;
+	width: 450px;
+	height: 366px;
+	border: 2px solid;
+	border-top-width: 1px;
+	border-top-color: black;
+    border-right-color: white;
+	border-bottom-width: 1px;
+    border-bottom-color: white;
+    border-left-color: black;
+	padding: 1px 0px;
+	z-index: 3;
+}
+.win_wid_conpan_container_text {
+	position: absolute;
+	font-family: notbold;
+	font-size: 14px;
+	left: 5px;
+	top: 25px;
+	z-index: 4;
+}
+.border_test {
+	position: absolute;
+	left: -2px;
+	top: -19px;
+	width: 450px;
+	border: 1px solid;
+	border-bottom-color: gray;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	z-index: 3;
+}
+	#win_wid_conpan_container_inside:after {
+	content: '';	
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	width: 632px;
+	height: 365px;
+	border: 1px solid;
+	border-top-width: 5px;
+	border-top-color: #c0c0c0;
+	border-right-color: white;
+    border-bottom-color: white;
+	z-index: 3;
+	}
+#win_wid_conpan_container_inside:after {	
+	position: absolute;
+	top: -29px;
+	left: -5px;
+	height: 364px;
+	width: 635px;
+	border: 2px solid white;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-top-color: transparent;
+	border-right-color: transparent;
+    border-bottom-color: transparent;
+	padding: 30px 0px;
+	z-index: 3;
+	
+}
+#win_wid_conpan_container_indent {	
+	position: absolute;
+	top: 373px;
+	left: -2px;
+	height: 20px;
+	width: 453px;
+	border: 1px solid #868A8E;
+	z-index: 3;
+	
+}
+#win_wid_conpan_icondiv {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 19px;
+	left: 12px;
+}
+#win_wid_conpan_text {
+	font-family: notbold;
+	font-size: 10pt;
+	position: absolute;
+	left: 5px;
+	top: -15px;
+	z-index: 10;
+}
+
+#win_wid_conpan_input {
+	position: absolute;
+	width: 417px;
+	height: 345px;
+	left: -2px;
+	top: 1px;
+	border: transparent;
+}
+#win_wid_conpan_obutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 174px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_conpan_cbutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 93px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_conpan_bbutton {
+	position: absolute;
+	height: 23px;
+	width: 75px;
+	right: 12px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+#win_wid_display_tgt {
+	width: 0px;
+	height: 0px;
+}
+#win_wid_display_container {
+	background-color: #C0C0C0;
+	width: 643px;
+	height: 398px;
+	cursor: default;
+	border: 2px solid;
+    border-right-color: black;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	padding: 0px 0px;
+}
+#win_wid_display_container_inside {
+	position: absolute;
+	left: 5px;
+	top: 20px;
+	width: 631px;
+	height: 364px;
+	border: 2px solid;
+	border-top-width: 1px;
+	border-top-color: black;
+    border-right-color: #C0C0C0;
+	border-bottom-width: 1px;
+    border-bottom-color: white;
+    border-left-color: black;
+	padding: 1px 0px;
+	z-index: 3;
+}
+.win_wid_display_container_text {
+	position: absolute;
+	font-family: notbold;
+	font-size: 14px;
+	left: 5px;
+	top: 25px;
+	z-index: 3;
+}
+.border_test {
+	position: absolute;
+	left: -2px;
+	top: -19px;
+	width: 450px;
+	border: 1px solid;
+	border-bottom-color: gray;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	z-index: 3;
+}
+	#win_wid_display_container_inside:after {
+	content: '';	
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	width: 632px;
+	height: 358px;
+	border: 1px solid;
+	border-top-width: 5px;
+	border-top-color: #c0c0c0;
+	border-right-color: white;
+    border-bottom-color: white;
+	z-index: 3;
+	}
+#win_wid_display_container_inside:after {	
+	position: absolute;
+	top: -29px;
+	left: -6px;
+	height: 364px;
+	width: 635px;
+	border: 2px solid white;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-top-color: transparent;
+	border-right-color: transparent;
+    border-bottom-color: transparent;
+	padding: 19px 0px;
+	z-index: 3;
+	
+}
+#win_wid_display_icondiv {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 19px;
+	left: 12px;
+}
+#win_wid_display_text {
+	font-family: notbold;
+	font-size: 10pt;
+	position: absolute;
+	left: 5px;
+	top: -15px;
+	z-index: 10;
+}
+
+#win_wid_display_input {
+	position: absolute;
+	width: 417px;
+	height: 345px;
+	left: -2px;
+	top: 1px;
+	border: transparent;
+}
+#win_wid_display_obutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 174px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_display_cbutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 93px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_display_bbutton {
+	position: absolute;
+	height: 23px;
+	width: 75px;
+	right: 12px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+#win_wid_mypc_tgt {
+	width: 0px;
+	height: 0px;
+}
+#win_wid_mypc_container {
+	background-color: #C0C0C0;
+	width: 265px;
+	height: 260px;
+	cursor: default;
+	border: 2px solid;
+    border-right-color: black;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	padding: 0px 0px;
+}
+#win_wid_mypc_container_inside {
+	position: absolute;
+	left: 5px;
+	top: 20px;
+	width: 250px;
+	height: 205px;
+	border: 2px solid;
+	border-top-width: 1px;
+	border-top-color: black;
+    border-right-color: white;
+	border-bottom-width: 1px;
+    border-bottom-color: white;
+    border-left-color: black;
+	padding: 1px 0px;
+	z-index: 3;
+}
+.win_wid_mypc_container_text {
+	position: absolute;
+	font-family: notbold;
+	font-size: 14px;
+	left: 5px;
+	top: 25px;
+	z-index: 4;
+}
+.border_test2 {
+	position: absolute;
+	left: -2px;
+	top: -19px;
+	width: 250px;
+	border: 1px solid;
+	border-bottom-color: transparent;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	z-index: 3;
+}
+	#win_wid_mypc_container_inside:after {
+	content: '';	
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	width: 265px;
+	height: 220px;
+	border: 1px solid;
+	border-top-width: 5px;
+	border-top-color: #c0c0c0;
+	border-right-color: white;
+    border-bottom-color: white;
+	z-index: 3;
+	}
+#win_wid_mypc_container_inside:after {	
+	position: absolute;
+	top: -29px;
+	left: -5px;
+	height: 230px;
+	width: 265px;
+	border: 2px solid white;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-top-color: transparent;
+	border-right-color: transparent;
+    border-bottom-color: transparent;
+	padding: 18px 0px;
+	z-index: 3;
+	
+}
+#win_wid_mypc_container_indent {	
+	position: absolute;
+	top: 212px;
+	left: -2px;
+	height: 20px;
+	width: 252px;
+	border: 1px solid #868A8E;
+	z-index: 3;
+	
+}
+#win_wid_mypc_icondiv {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 19px;
+	left: 12px;
+}
+#win_wid_mypc_text {
+	font-family: notbold;
+	font-size: 10pt;
+	position: absolute;
+	left: 5px;
+	top: -15px;
+	z-index: 10;
+}
+
+#win_wid_mypc_input {
+	position: absolute;
+	width: 417px;
+	height: 345px;
+	left: -2px;
+	top: 1px;
+	border: transparent;
+}
+#win_wid_mypc_obutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 174px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_mypc_cbutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 93px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_mypc_bbutton {
+	position: absolute;
+	height: 23px;
+	width: 75px;
+	right: 12px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+#win_wid_error_tgt {
+	width: 0px;
+	height: 0px;
+}
+#win_wid_error_container {
+	background-color: #C0C0C0;
+	width: 257px;
+	height: 125px;
+	cursor: default;
+	border: 2px solid;
+    border-right-color: black;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	padding: 0px 0px;
+}
+#win_wid_error_container_inside {
+	position: absolute;
+	left: 5px;
+	top: 20px;
+	width: 250px;
+	height: 205px;
+}
+.win_wid_error_container_text {
+	position: absolute;
+	font-family: notbold;
+	font-size: 14px;
+	left: 5px;
+	top: 25px;
+}
+.border_test {
+	position: absolute;
+	left: -2px;
+	top: -19px;
+	width: 250px;
+	border: 1px solid;
+	border-bottom-color: gray;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+	#win_wid_error_container_inside:after {
+	content: '';	
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	width: 265px;
+	height: 220px;
+	border: 1px solid;
+	border-top-width: 5px;
+	border-top-color: #c0c0c0;
+	border-right-color: white;
+    border-bottom-color: white;
+	z-index: 3;
+	}
+#win_wid_error_container_inside:after {	
+	position: absolute;
+	top: -29px;
+	left: -3px;
+	height: 131px;
+	width: 265px;
+	border: 2px solid white;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-top-color: transparent;
+	border-right-color: transparent;
+    border-bottom-color: transparent;
+	padding: 0px 0px;
+	z-index: 3;
+	
+}
+#win_wid_error_container_indent {	
+	position: absolute;
+	top: 212px;
+	left: -2px;
+	height: 20px;
+	width: 252px;
+	border: 1px solid #868A8E;
+	z-index: 3;
+	
+}
+#win_wid_error_icondiv {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 19px;
+	left: 12px;
+}
+#win_wid_error_text {
+	font-family: notbold;
+	font-size: 10pt;
+	position: absolute;
+	left: 5px;
+	top: -15px;
+	z-index: 10;
+}
+
+#win_wid_error_input {
+	position: absolute;
+	width: 417px;
+	height: 345px;
+	left: -2px;
+	top: 1px;
+	border: transparent;
+}
+#win_wid_error_obutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 174px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_error_cbutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 93px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_error_bbutton {
+	position: absolute;
+	height: 23px;
+	width: 75px;
+	right: 12px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+#win_wid_picture1_tgt {
+	width: 0px;
+	height: 0px;
+}
+#win_wid_picture1_container {
+	background-color: #C0C0C0;
+	width: 629px;
+	height: 398px;
+	cursor: default;
+}
+#win_wid_picture1_container_inside {
+	position: absolute;
+	left: 5px;
+	top: 20px;
+	width: 620px;
+	height: 364px;
+	z-index: 3;
+}
+.win_wid_picture1_container_text {
+	position: absolute;
+	font-family: notbold;
+	font-size: 14px;
+	left: 5px;
+	top: 25px;
+	z-index: 3;
+}
+.border_test {
+	position: absolute;
+	left: -2px;
+	top: -19px;
+	width: 450px;
+	z-index: 3;
+}
+	#win_wid_picture1_container_inside:after {
+	content: '';	
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	width: 630px;
+	height: 358px;
+	z-index: 3;
+	}
+#win_wid_picture1_container_inside:after {	
+	position: absolute;
+	top: -29px;
+	left: -3px;
+	height: 5px;
+	width: 625px;
+	border: 2px solid white;
+	border-right-width: 2px;
+	border-bottom-width: 1px;
+	border-top-color: transparent;
+	border-right-color: black;
+    border-bottom-color: transparent;
+	padding: 11px 0px;
+	z-index: 3;
+	
+}
+#win_wid_picture1_icondiv {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 19px;
+	left: 12px;
+}
+#win_wid_picture1_text {
+	font-family: notbold;
+	font-size: 10pt;
+	position: absolute;
+	left: 5px;
+	top: -15px;
+	z-index: 10;
+}
+
+#win_wid_picture1_input {
+	position: absolute;
+	width: 417px;
+	height: 345px;
+	left: -2px;
+	top: 1px;
+	border: transparent;
+}
+#win_wid_picture1_obutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 174px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_picture1_cbutton {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+	right: 93px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
+.win_wid_picture1_bbutton {
+	position: absolute;
+	height: 23px;
+	width: 75px;
+	right: 12px;
+	bottom: 14px;
+	font-family: "Microsoft Sans Serif";
+	font-size: 8pt;
+}
