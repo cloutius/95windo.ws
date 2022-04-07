@@ -130,25 +130,6 @@ function runClose() {
 	var win_num = win_id_splt[1];
 	windowClose(win_num);
 }
-function runOK() {
-	var boxVal = $( "#win_wid_run_input" ).val();
-	aliasRun(boxVal); // sends the input to the alias => JS function (run.js)
-	runClose();
-}
-function runCancel() {
-	runClose();
-}
-function runBrowse() {
-	// this is just a placeholder for if/when we can browse for "executables"
-}
-function runClose() {
-	// get the grandparent of the placeholder div (aka: win_window)
-	var win_id = $( ".win_wid_run_tgt" ).parent().parent().attr('id');
-	// start refining the window_id retrieved above and execute windowClose()
-	var win_id_splt = win_id.split("_");
-	var win_num = win_id_splt[1];
-	windowClose(win_num);
-}
 /* NOTEPAD APP */
 
 function notepad(start) { // the run box
@@ -1408,29 +1389,6 @@ function picture1Browse() {
 function picture1Close() {
 	// get the grandparent of the placeholder div (aka: win_window)
 	var win_id = $( ".win_wid_picture1_tgt" ).parent().parent().attr('id');
-	// start refining the window_id retrieved above and execute windowClose()
-	var win_id_splt = win_id.split("_");
-	var win_num = win_id_splt[1];
-	windowClose(win_num);
-}
-
-
-
-
-
-/* WINVER DIALOG FUNCTION */
-function winverStart() {
-	var html1 = '<div class="win_wid_winver_tgt"></div><div id="win_wid_winver_container">';
-	var html2 = '<span id="win_wid_winver_name" class="win_wid_winver_text">Windows 95</span>';
-	var html3 = '<img id="win_wid_winver_icon" src="system/images/winver_logo.png">';
-	var html4 = '<span id="win_wid_winver_copy" class="win_wid_winver_text">Copyright &copy; 1981-1995, Microsoft Corp.</span>';
-	var html5 = '<button id="win_wid_winver_ok" onclick="closeWinver()">OK</button></div>';
-	var winverHTML = html1 + html2 + html3 + html4 + html5;
-	makeWidget(false, "Windows", winverHTML, true, false, false, true, 300, 130, "win_wid_winver_dialog");
-}
-function closeWinver() {
-	// get the grandparent of the placeholder div (aka: win_window)
-	var win_id = $( ".win_wid_winver_tgt" ).parent().parent().attr('id');
 	// start refining the window_id retrieved above and execute windowClose()
 	var win_id_splt = win_id.split("_");
 	var win_num = win_id_splt[1];
