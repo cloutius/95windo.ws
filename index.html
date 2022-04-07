@@ -930,59 +930,6 @@ function makeWidget(icon, title, html, taskbar, min, ques, center, wid, hei, cus
 		windowCenter(window_set);
 	}
 }
-
-function run(start) { // the run box
-	// toggle Start menu if launched from there
-	if(start == true) {
-		$( "#win_start" ).toggle(0, function(){
-			$( ".win_titlebar" ).toggleClass( "win_titb_start" );
-			$( ".win_tb_button" ).toggleClass( "win_tb_button_start" );
-			$( "#win_start_button" ).toggleClass( "win_start_button_depressed" );
-		});
-	}
-	// add in the run.js include into <head>
-	var runJsLink = $("<script src='system/widgetjs/run.js'>");
-    $("head").append(runJsLink);
-	//html code below
-	var sec1 = '<div class="win_wid_run_tgt"></div><div id="win_wid_run_container"> <div id="win_wid_run_icondiv"> <img src="system/images/run_icon.png"> ';
-	var sec2 = '</div> <p id="win_wid_run_text"> Type the name of a program, folder, or document, and<br> ';
-	var sec3 = 'Windows will open it for you. </p> <p id="win_wid_run_opent"> <span class="win_underline">O';
-	var sec4 = '</span>pen: </p> <input type="text" id="win_wid_run_input" autofocus> <button id="win_wid_run_obutton" onClick="runOK()" disabled autofocus>';
-	var sec5 = 'OK</button> <button class="win_wid_run_cbutton" id="test" onClick="runCancel()">Cancel</button> <button class="win_wid_run_bbutton" onClick="runBrowse()">';
-	var sec6 = 'Browse...</button> </div>';
-	var widgetHTML = sec1 + sec2 + sec3 + sec4 + sec5 + sec6; // combine html code
-	// time to make the widgets...
-	makeWidget(false, 'Run', widgetHTML, false, false, false, false, 340, 140, 'win_wid_run_dialog');
-	$( '#win_wid_run_input' ).focus();
-	// set "open" button active and inactive based on input value
-	$( '#win_wid_run_input' ).on('input', function() {
-		var tbVal = $( '#win_wid_run_input' ).val();
-		if(tbVal.length > 0) { // input != empty
-			$( '#win_wid_run_obutton' ).removeAttr('disabled');
-		} else { // input is empty
-			$( '#win_wid_run_obutton' ).prop('disabled', true);
-		}
-	});
-}
-function runOK() {
-	var boxVal = $( "#win_wid_run_input" ).val();
-	aliasRun(boxVal); // sends the input to the alias => JS function (run.js)
-	runClose();
-}
-function runCancel() {
-	runClose();
-}
-function runBrowse() {
-	// this is just a placeholder for if/when we can browse for "executables"
-}
-function runClose() {
-	// get the grandparent of the placeholder div (aka: win_window)
-	var win_id = $( ".win_wid_run_tgt" ).parent().parent().attr('id');
-	// start refining the window_id retrieved above and execute windowClose()
-	var win_id_splt = win_id.split("_");
-	var win_num = win_id_splt[1];
-	windowClose(win_num);
-}
 /* NOTEPAD APP */
 
 function notepad(start) { // the run box
