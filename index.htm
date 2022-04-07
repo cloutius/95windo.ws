@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" type="image/png" href="system/icons/start.png">
+		<title>Windhoes 95</title>
+		<link rel="stylesheet" type="text/css" href="system/win95.css">
+		<link rel="stylesheet" type="text/css" href="system/window.css">
+		<link rel="stylesheet" type="text/css" href="system/widgets.css">
+		<link rel="stylesheet" type="text/css" href="system/taskbar.css">
+		<link rel="stylesheet" type="text/css" href="system/start.css">
+		<link rel="stylesheet" type="text/css" href="system/jquery.css">
+		<link rel="stylesheet" type="text/css" href="system/bsod.css">
+		<link rel="stylesheet" type="text/css" href="system/controls.css">
+		<link rel="stylesheet" type="text/css" href="system/desktop.css">
+		<link rel="stylesheet" href="style.css">
+		<!--<link rel="stylesheet" type="text/css" href="webkit.css">-->
+		<script src="system/jquery.js"></script>
+		<script src="system/t.js"></script>
+		<script src="system/jquery-ui/jquery-ui.min.js"></script>
+		<script src="system/win95.js"></script>
+		<script src="system/widgets.js"></script>
+		<script src="system/clock.js"></script>
+		<script  src="index.js"></script>
+	</head>
+	<style>
+      @font-face {
+  font-family: notbold;
+  src: url(fonts/ms_sans_serif.woff2);
+}
+      @font-face {
+  font-family: bold;
+  src: url(fonts/ms_sans_serif_bold.woff2);
+}
+    </style>
+	<style>
+	#loader {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      margin: 0;
+	  z-index: 100000;
+}
+</style>
+<style>
+#contextMenuContainer {
+ display: none;
+ position: fixed;
+ border: 1px solid;
+ border-right: 1px solid black;
+ border-left: 1px solid white;
+ border-top: 1px solid white;
+ border-bottom: 1px solid black;
+ padding-top: 5px;
+ background: #c0c0c0;
+ width:150px;
+ z-index: 100;
+ }
+ #contextMenuContainer:after {
+ content: '';
+ top: -0px;
+ position: absolute;
+ border: 1px solid;
+ border-right: 1px solid gray;
+ border-left: 1px solid white;
+ border-top: 1px solid white;
+ border-bottom: 1px solid gray;
+ padding-left: 148px;
+ padding-top: 155px;
+ }
+#contextMenuContainer #contextMenu {
+list-style: none;
+ padding: 0px;
+ font-size: 14px;
+ font-family: notbold;
+ }
+#contextMenuContainer #contextMenu li {
+font-size: 14px;
+ cursor: pointer;
+ padding-top: 0px;
+ padding-left: 30px;
+ padding-bottom: 5px;
+ text-align: relative;
+ }
+ #divider {
+ position: relative;
+ border: 1px solid;
+ border-right: transparent;
+ border-left: transparent;
+ border-top: 1px solid gray;
+ border-bottom: 1px solid white;
+ padding: 0px 0px;
+ }
+ #clear_divider {
+ position: relative;
+ border: 1px solid;
+ border-right: transparent;
+ border-left: transparent;
+ border-top: transparent;
+ border-bottom: transparent;
+ padding: 3px 0px;
+ }
+</style>
+<style>
+
+* {
+  border-box: box-sizing;
+}
+.dropdown {
+  position: relative;
+  height: 100px;
+  top: -50px;
+}
+.dropdownimg {
+	width: 24px;
+	height: 24px;
+	position: relative;
+	margin: 0px;
+}
+.dropdownimg:hover {
+	background-color: #000099;
+	color: white;
+	}
+.dropdown_tliicon {
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	}
+.dropdown-text {
+  position: absolute;
+	font-family: notbold;
+	font-size: 10pt;
+	top: 15px;
+	left: 40px;
+	list-style: none;
+	cursor: default;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 23px;
+  left: 105px;
+  width: 175px;
+  height: 120px;
+  background: #c0c0c0;
+  border: 1px solid;
+ border-right: 1px solid black;
+ border-left: 1px solid white;
+ border-top: 1px solid white;
+ border-bottom: 1px solid black;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0px;
+  color: black;
+}
+
+.dropdown-menu a,
+.dropdown-menu a:hover {
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  color: #fff;
+  background: #0000aa;
+}
+</style>
+<style>
+
+* {
+  border-box: box-sizing;
+}
+.dropdown2 {
+  position: relative;
+  height: 100px;
+  top: -50px;
+}
+.dropdownimg2 {
+	width: 24px;
+	height: 24px;
+	position: relative;
+	margin: 0px;
+}
+.dropdownimg2:hover {
+	background-color: #000099;
+	color: white;
+	}
+.dropdown_tliicon2 {
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	}
+.dropdown-text2 {
+  position: absolute;
+	font-family: notbold;
+	font-size: 10pt;
+	top: 15px;
+	left: 40px;
+	list-style: none;
+	cursor: default;
+}
+
+.dropdown2:hover .dropdown-menu2 {
+  display: block;
+}
+
+.dropdown-menu2 {
+  display: none;
+  position: absolute;
+  top: 15px;
+  left: 150px;
+  width: 175px;
+  height: 60px;
+  background: #c0c0c0;
+  border: 1px solid;
+ border-right: 1px solid black;
+ border-left: 1px solid white;
+ border-top: 1px solid white;
+ border-bottom: 1px solid black;
+}
+
+.dropdown-menu2 a {
+  display: block;
+  padding: 0px;
+  color: black;
+}
+
+.dropdown-menu2 a,
+.dropdown-menu a:hover {
+  text-decoration: none;
+}
+
+.dropdown-menu2 a:hover {
+  color: #fff;
+  background: #0000aa;
+}
+</style>
+<style>
+         * {
+         -webkit-font-smoothing: none;
+         image-rendering: optimizeSpeed;
+         image-rendering: -moz-crisp-edges;
+         image-rendering: -o-crisp-edges;
+         image-rendering: -webkit-optimize-contrast;
+         image-rendering: optimize-contrast;
+         -ms-interpolation-mode: nearest-neighbor;
+         -webkit-user-select: none;
+         user-select: none;
+         -moz-user-select: none;
+         cursor: default;
+         outline: none;
+         }
+      </style>
+<style>
+.bgtext {
+	font-size: 12px;
+	margin-top: -140px;
+	margin-left: 110px;
+	list-style-type: none;
+}
+</style>
+<!-- IDEAS: -->
+<!-- https://www.cbox.ws/ -->
+<!-- https://magic-8ball.com/-->
+<!--VIDEO/PICTURE FOLDER--> 
+<!--CALCULATOR?-->
+<!-- END OF IDEAS -->
+
+	<body onload="updateClock(); setInterval('updateClock()', 1000);
+	  makeWidget(false, 'Welcome', `
+      <img draggable=false src=system/images/win95_start.png>
+      `, false, false, false, true, 361, 160);">
+	  	
+	<div id="loader"><img src="system/images/load.jpg"></div>
+	<!-- makeWindow('minesweeper/mine-menu-icon.png', 'Minesweeper', 'minesweeper/minesweeper.html', true, true, 245, 333 -->
+<div id="contextMenuContainer" >                         
+    <div id="contextMenu">    
+      <li style="color:gray" onclick="ms(true)">Arrange Icons&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;►</li>
+      <li style="color:gray">Lin<u>e</u> up Icons</li>
+	  <div id="divider"></div>
+	  <div id="clear_divider"></div>
+	  <li style="color:gray"><u>P</u>aste</li>
+      <li style="color:gray">Paste <u>S</u>hortcut</li>
+	  <div id="divider"></div>
+	  <div id="clear_divider"></div>
+	  <li style="color:gray">Ne<u>w</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;►</li>
+	  <div id="divider"></div>
+	  <div id="clear_divider"></div>
+      <li>P<u>r</u>operties</li>
+    </div>
+  </div>
+	<!-- Taskbar -->
+	<div id="win_taskbar">
+		<!-- Start Button -->
+		<div id="win_start_button">
+			<img src="system/icons/start.png" id="win_start_icon" alt="Windows Logo">
+			<span id="win_start_text" style="font-family:bold">Start</span>
+		</div>
+		<!-- Taskbar Buttons -->
+		<div id="win_tb_placeholder">
+		
+		</div><!-- This is here to provide a target for the taskbar addition function -->
+		<!--<div class="win_tb_button win_tb_button_inactive" id="win_tb_win_1">
+			<div class="win_tb_icon">
+				<img src="system/icons/start.png">
+			</div>
+			<div class="win_tb_text">
+				Inactive Window
+			</div>
+		</div>
+		<div class="win_tb_button win_tb_button_active" id="win_tb_win_2">
+			<div class="win_tb_icon">
+				<img src="system/icons/start.png">
+			</div>
+			<div class="win_tb_text">
+				Active Window
+			</div>
+		</div>-->
+		
+		<!-- System Tray -->
+		<div id="win_systray">
+			<span id="win_clock" style="font-family:notbold" ondblclick="calender(true)">&nbsp;</span>
+		</div>
+	</div>
+	
+	<!-- Start Menu -->
+	<div id="win_start">
+		<div id="win_start_banner">
+			<img src="system/icons/start_banner.png" alt="Windows 95" id="win_start_banner_img">
+		</div>
+		<!-- Start Menu Top-level List -->
+		<div id="win_start_tli_cont">
+			<!-- Programs -->
+			<div id="win_start_tli_programs" class="win_start_toplevel_item">
+				<img src="system/icons/programs24.png" alt="Programs" class="win_start_tliicon">
+				<li class="win_start_tlitext" style="font-family:notbold;left:45px;"><u style="font-family:notbold">P</u>rograms&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;►
+				<div class="dropdown">
+     <!-- This triggers the dropdown --
+      <!-- This is the actual dropdown menu -->
+	  <div class="dropdown-menu">
+	  <div id="dropdown_tliicon">
+	<img class="dropdownimg" style="left:6px;" src="system/images/internet.png" alt="Programs" >
+      <a class="dropdown-text" style="top:6px;" class="bb_button" ondblclick="bb(true)">Blockbuster</a>
+      <img class="dropdownimg" style="top:30px;left:-20px;" src="system/images/music.png" alt="Programs" class="dropdown_tliicon">
+      <a class="dropdown-text" style="top:34px;" class="mp_button" ondblclick="mp(true)">Music Player</a>
+      <img class="dropdownimg" style="top:60px;left:-47px;" src="tetris/tetris-icon.png" alt="Programs" class="dropdown_tliicon">
+      <a class="dropdown-text" style="top:64px;" class="tetris_button" ondblclick="tetris(true)">Tetris</a>
+	  <img class="dropdownimg" style="top:90px;left:-73px;" src="minesweeper/minesweeper.png" alt="Programs" class="dropdown_tliicon">
+      <a class="dropdown-text" style="top:94px;" class="ms_button" ondblclick="ms(true)" >Minesweeper</a>
+	  </div>
+    </div>
+  </div>
+  </div>
+	
+			<!-- Settings -->
+			<div id="win_start_tli_settings" class="win_start_toplevel_item">
+				<img  src="system/icons/documents24.png" alt="My Computer" class="win_start_tliicon">
+				<a class="win_start_tlitext" style="font-family:notbold;text-decoration:none;" onclick="mypc(true)"><u style="font-family:notbold;text-decoration:underline;" onclick="mypc(true)">D</u>ocuments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;►</a>
+				<div class="dropdown2">
+				<!-- This triggers the dropdown --
+      <!-- This is the actual dropdown menu -->
+	  <div class="dropdown-menu2">
+	  <div id="dropdown_tliicon2">
+			<img class="dropdownimg2" style="left:6px;" src="system/images/notepadfile2.png" alt="ReadMe" >
+      <a class="dropdown-text2" style="top:6px;" class="readme_button" ondblclick="readme(true)">ReadMe</a>
+      <img class="dropdownimg2" style="top:30px;left:-22px;" src="system/images/notepadfile2.png" alt="Null">
+      <a class="dropdown-text2" style="top:34px;" class="mp_button" ondblclick="">null</a>
+	  </div>
+    </div>
+  </div>
+  </div>
+
+			<!-- Help -->
+			<div id="win_start_tli_documents" class="win_start_toplevel_item">
+				<img src="system/icons/settings24.png" alt="Documents" class="win_start_tliicon">
+				<span class="win_start_tlitext" style="font-family:notbold" onclick="conpan(true)"><u style="font-family:notbold" >S</u >ettings</span>
+			</div>
+			<div id="win_start_tli_find" class="win_start_toplevel_item">
+				<img  src="system/images/notepadfile2.png" alt="My Computer" class="win_start_tliicon">
+				<a class="win_start_tlitext" style="font-family:notbold;text-decoration:none;" onclick="readme(true)"><u style="font-family:notbold;text-decoration:underline;" onclick="readme(true)">R</u>eadMe</a>
+			</div>
+			<div id="win_start_tli_help" class="win_start_toplevel_item">
+				<img src="system/icons/help24.png" alt="Help" class="win_start_tliicon">
+				<span class="win_start_tlitext" style="font-family:notbold" onclick="help(true)"><u style="font-family:notbold">H</u>elp</span>
+			</div>
+			<!-- Run -->
+			<div id="win_start_tli_run" class="win_start_toplevel_item" onClick="run(true)">
+				<img src="system/icons/run24.png" alt="Run..." class="win_start_tliicon">
+				<span class="win_start_tlitext" style="font-family:notbold"><u style="font-family:notbold">R</u>un...</span>
+			</div>
+			<!-- Divider -->
+			<div class="win_start_divider">
+				<div class="win_start_d1"></div>
+				<div class="win_start_d2"></div>
+			</div>
+			<!-- Shut Down -->
+			<div id="win_start_tli_shutdown" class="win_start_toplevel_item">
+				<img src="system/icons/shutdown24.png" alt="Shut Down..." class="win_start_tliicon">
+				<span class="win_start_tlitext" style="font-family:notbold" id="delData" onclick="localStorage.clear(); window.location.reload();">Sh<u style="font-family:notbold">u</u>t Down...</span>
+			</div>
+		</div>
+	</div>
+	<div id="win_desktop">
+	<div id="notepad_icon">
+	<img src="system/images/mypc2.png" class="notepad_button" ondblclick="mypc(true)" alt="My Computer"></img>
+			<span id="notepad_text" style="font-family:notbold">My&nbsp;&nbsp;Computer</span></button>
+		</div></div>
+		
+	<div id="win_desktop">
+	<div id="readme_icon">
+	<img src="system/images/notepad2.png" class="notepad_button" ondblclick="notepad(true)" alt="Notepad"></img>
+			<span id="readme_text" style="font-family:notbold">Notepad</span></button>
+		</div></div>
+		
+	<div id="win_container">
+		<div id="win_placeholder"></div><!-- This is here to provide a target for the window creation function -->
+	</div>
+	</div>
+	<div id="win_desktop">
+	<div id="spacejam_icon">
+	<img src="system/images/internet.png" class="spacejam_button" ondblclick="spacejam(true)"></img>
+	<span id="spacejam_text" style="font-family:notbold">this_is_not_my_family</span>
+	</div>
+	</div>
+	<div id="win_desktop">
+	<div id="paint_icon">
+	<img src="system/images/paint2.png" class="paint_button" ondblclick="paint(true)"></img>
+	<span id="paint_text" style="font-family:notbold">Paint</span>
+	</div>
+	</div>
+	<div id="win_desktop">
+	<div id="spotify_icon">
+	<img src="system/images/phone.png" class="comment_button" ondblclick="comment(true)"></img>
+	<span id="comment_text" style="font-family:notbold">Comments</span>
+	</div>
+	</div>
+	<div id="win_overlay">
+	<script>
+    var snd = new Audio("system/images/error.mp3"); 
+</script>
+<script>
+function show_image(src, width, height, alt) {
+    var img = document.createElement("img");
+    img.src = src;
+    img.width = width;
+    img.height = height;
+    img.alt = alt;
+
+    // This next line will just add it to the <body> tag
+    document.body.appendChild(img);
+}
+</script>
+	<script>
+function GetClock(){
+var d=new Date();
+var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds();
+if(nmin<=9) nmin="0"+nmin;
+if(nsec<=9) nsec="0"+nsec;
+
+var clocktext=""+nhour+":"+nmin+":"+nsec+"";
+document.getElementById('calenderbox').innerHTML=clocktext;
+}
+
+GetClock();
+setInterval(GetClock,1000);
+</script>
+	<script>
+$(function() {
+  var doubleClicked = false;
+  $(document).on("contextmenu", function (e) {
+   if(doubleClicked == false) {
+    e.preventDefault(); // To prevent the default context menu.
+    var windowHeight = $(window).height()/2;
+    var windowWidth = $(window).width()/2;
+    //When user click on bottom-left part of window
+    if(e.clientY > windowHeight && e.clientX <= windowWidth) {
+      $("#contextMenuContainer").css("left", e.clientX);
+      $("#contextMenuContainer").css("bottom", $(window).height()-e.clientY);
+      $("#contextMenuContainer").css("right", "auto");
+      $("#contextMenuContainer").css("top", "auto");
+    } else if(e.clientY > windowHeight && e.clientX > windowWidth) {
+      //When user click on bottom-right part of window
+      $("#contextMenuContainer").css("right", $(window).width()-e.clientX);
+      $("#contextMenuContainer").css("bottom", $(window).height()-e.clientY);
+      $("#contextMenuContainer").css("left", "auto");
+      $("#contextMenuContainer").css("top", "auto");
+    } else if(e.clientY <= windowHeight && e.clientX <= windowWidth) {
+      //When user click on top-left part of window
+      $("#contextMenuContainer").css("left", e.clientX);
+      $("#contextMenuContainer").css("top", e.clientY);
+      $("#contextMenuContainer").css("right", "auto");
+      $("#contextMenuContainer").css("bottom", "auto");
+    } else {
+       //When user click on top-right part of window
+      $("#contextMenuContainer").css("right", $(window).width()-e.clientX);
+      $("#contextMenuContainer").css("top", e.clientY);
+      $("#contextMenuContainer").css("left", "auto");
+      $("#contextMenuContainer").css("bottom", "auto");
+    }
+    $("#contextMenuContainer").fadeIn(0, FocusContextOut());
+      doubleClicked = false;
+    } else {
+      e.preventDefault();
+      doubleClicked = true;
+      $("#contextMenuContainer").fadeOut(0);
+    }
+  });
+   function FocusContextOut() {
+ $(document).on("click", function (e) {
+   if(!(e.target.closest('#contextMenuContainer'))){
+      doubleClicked = false; 
+      $("#contextMenuContainer").fadeOut(0);
+      $(document).off("click");    
+      }
+    });
+  }
+});
+	</script>
+		<script>
+//Make the DIV element draggagle:
+dragElement(document.getElementById("spotify_icon"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "spotify_text")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "spotify_text").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+		<script>
+//Make the DIV element draggagle:
+dragElement(document.getElementById("paint_icon"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "paint_text")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "paint_text").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+	<script>
+//Make the DIV element draggagle:
+dragElement(document.getElementById("spacejam_icon"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "spacejam_text")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "spacejam_text").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+<script>
+$(window).load(function() {      //Do the code in the {}s when the window has loaded LOAD IMAGE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  $("#loader").fadeOut(0);  //Fade out the #loader div
+});
+	</script>
+	<script>
+//Make the DIV element draggagle:
+dragElement(document.getElementById("tetris_icon"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "tetris_text")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "tetris_text").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+	<script>
+//Make the DIV element draggagle:
+dragElement(document.getElementById("notepad_icon"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "notepad_text")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "notepad_text").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+<script>
+//Make the DIV element draggagle:
+dragElement(document.getElementById("readme_icon"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "readme_text")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "readme_text").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+<script>
+//Make the DIV element draggagle:
+dragElement(document.getElementById("ms_icon"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "ms_text")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "ms_text").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+	</div>
+	</body>
+</html>

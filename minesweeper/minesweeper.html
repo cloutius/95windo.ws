@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" href="minesweeper/bomb.png" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<style>
+@font-face {
+  font-family: notbold;
+  src: url(fonts/ms_sans_serif.woff2);
+}
+
+@font-face {
+    font-family: "Press Start";
+    src: url("./prstart.ttf");
+}
+
+@font-face {
+  font-family: bold;
+  src: url(fonts/ms_sans_serif_bold.woff2);
+}
+
+* {
+    -o-user-select: none;
+    user-select: none;
+}
+
+
+#board {
+    background-color: lightgray;
+}
+
+#clock {
+    font-family: 'bold';
+    font-size: 14px;
+    display: inline;
+    float: right;
+    border-top: 1.5px solid #808080;
+    border-left: 1.5px solid #808080;
+    border-right: 1.5px solid #FAFAFA;
+    border-bottom: 1.5px solid #FAFAFA;
+    /* height: 28px; */
+    width: 200px;
+    height: 22px;
+    margin: 2px;
+    padding: 5px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    margin: -30px 0px;
+}
+
+#reset {
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    border-top: 2px solid #ffffff;
+    border-right: 2px solid #7B7B7B;
+    border-bottom: 2px solid #7B7B7B;
+    border-left: 2px solid #ffffff;
+}
+
+.revealed {
+    font-family: "Press Start";
+    background-color: #C0C0C0;
+    font-size: 80%;
+    text-align: center;
+    border: none;
+}
+
+#reset:hover {
+    text-align: center;
+    cursor: pointer;
+}
+
+#size-btns {
+    float: left;
+    display: inline;
+    margin: 2px;
+}
+
+#start {
+    float: left;
+}
+
+#status-bar  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2px;
+    margin: 6px;
+    border-top: 2px solid #7B7B7B;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    border-left: 2px solid #7B7B7B;
+}
+
+td {
+    height: 20px;
+    width: 20px;
+    background-color: #C0C0C0;
+    border: 1.5px solid;
+    border-top-color: #ffffff;
+    border-right-color: #7B7B7B;
+    border-bottom-color: #7B7B7B;
+    border-left-color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#timer, #bomb-counter {
+    font-family: 'notbold';
+    font-size: 35px;
+    letter-spacing: 1px;
+    color: red;
+    background-color: black;
+    text-align: center;
+    padding: 4px 4px 0 7px;
+    line-height: 1em;
+}
+
+</style>
+<body>   
+    <div class="flex-container">
+        <div class="game-board">
+            <br>
+        <table id="board"></table>
+        </div>
+    </div>
+        <section id="footer">
+            <div id="start">
+            <div id="size-btns"> 
+            </div>
+        </section>
+    <script src="js/cell.js"></script>
+    <script src="js/main.js"></script>
+
+
+<script>
+/*----- classes -----*/
+class  Cell {
+    constructor(row, col, board) {
+        this.row = row;
+        this.col = col;
+        this.bomb = false;
+        this.board = board;
+        this.revealed = false;
+        this.flagged = false;
+    }
+
+    getAdjCells() {
+        var adj = [];
+        var lastRow = board.length - 1;
+        var lastCol = board[0].length - 1;
+        if (this.row > 0 && this.col > 0) adj.push(board[this.row - 1][this.col - 1]);
+        if (this.row > 0) adj.push(board[this.row - 1][this.col]);
+        if (this.row > 0 && this.col < lastCol) adj.push(board[this.row - 1][this.col + 1]);
+        if (this.col < lastCol) adj.push(board[this.row][this.col + 1]);
+        if (this.row < lastRow && this.col < lastCol) adj.push(board[this.row + 1][this.col + 1]);
+        if (this.row < lastRow) adj.push(board[this.row + 1][this.col]);
+        if (this.row < lastRow && this.col > 0) adj.push(board[this.row + 1][this.col - 1]);
+        if (this.col > 0) adj.push(board[this.row][this.col - 1]);       
+        return adj;
+    }
+
+    calcAdjBombs() {
+        var adjCells = this.getAdjCells();
+        var adjBombs = adjCells.reduce(function(acc, cell) {
+            return acc + (cell.bomb ? 1 : 0);
+        }, 0);
+        this.adjBombs = adjBombs;
+    }
+
+    flag() {
+        if (!this.revealed) {
+            this.flagged = !this.flagged;
+            return this.flagged;
+        }
+    }
+
+    reveal() {
+        if (this.revealed && !hitBomb) return;
+        this.revealed = true;
+        if (this.bomb) return true;
+        if (this.adjBombs === 0) {
+            var adj = this.getAdjCells();
+            adj.forEach(function(cell){
+                if (!cell.revealed) cell.reveal();
+            });
+        }
+        return false;
+    }
+}
+
+/*----- constants -----*/
+var bombImage = '<img src="bomb.png">';
+var flagImage = '<img src="flag.png">';
+var wrongBombImage = '<img src="wrong-bomb.png">'
+var sizeLookup = {
+  '9': {totalBombs: 10, tableWidth: '245px'},
+};
+var colors = [
+  '',
+  '#0000FA',
+  '#4B802D',
+  '#DB1300',
+  '#202081',
+  '#690400',
+  '#457A7A',
+  '#1B1B1B',
+  '#7A7A7A',
+];
+
+/*----- app's state (variables) -----*/
+var size = 9;
+var board;
+var bombCount;
+var timeElapsed;
+var adjBombs;
+var hitBomb;
+var elapsedTime;
+var timerId;
+var winner;
+
+/*----- cached element references -----*/
+var boardEl = document.getElementById('board');
+
+/*----- event listeners -----*/
+document.getElementById('size-btns').addEventListener('click', function(e) {
+  size = parseInt(e.target.id.replace('size-', ''));
+  init();
+  render();
+});
+
+boardEl.addEventListener('click', function(e) {
+  if (winner || hitBomb) return;
+  var clickedEl;
+  clickedEl = e.target.tagName.toLowerCase() === 'img' ? e.target.parentElement : e.target;
+  if (clickedEl.classList.contains('game-cell')) {
+    if (!timerId) setTimer();
+    var row = parseInt(clickedEl.dataset.row);
+    var col = parseInt(clickedEl.dataset.col);
+    var cell = board[row][col];
+    if (e.shiftKey && !cell.revealed && bombCount > 0) {
+      bombCount += cell.flag() ? -1 : 1;
+    } else {
+      hitBomb = cell.reveal();
+      if (hitBomb) {
+        revealAll();
+        clearInterval(timerId);
+        e.target.style.backgroundColor = 'red';
+      }
+    }
+    winner = getWinner();
+    render();
+  }
+});
+
+function createResetListener() { 
+  document.getElementById('reset').addEventListener('click', function() {
+    init();
+    render();
+  });
+}
+
+/*----- functions -----*/
+function setTimer () {
+  timerId = setInterval(function(){
+    elapsedTime += 1;
+    document.getElementById('timer').innerText = elapsedTime.toString().padStart(3, '0');
+  }, 1000);
+}
+
+function revealAll() {
+  board.forEach(function(rowArr) {
+    rowArr.forEach(function(cell) {
+      cell.reveal();
+    });
+  });
+}
+
+function buildTable() {
+  var topRow = `
+   
+    <tr>
+      </td>
+    </tr>
+    </tr>
+      <tr>
+        <td class="menu" colspan="${size}">
+            <section id="status-bar">
+              <div id="bomb-counter">000</div>
+              <div id="reset"><img src="smiley-face.png"></div>
+              <div id="timer">000</div>
+            </section>
+        </td>
+      </tr>
+    `;
+  boardEl.innerHTML = topRow + `<tr>${'<td class="game-cell"></td>'.repeat(size)}</tr>`.repeat(size);
+  boardEl.style.width = sizeLookup[size].tableWidth;
+  createResetListener();
+  var cells = Array.from(document.querySelectorAll('td:not(.menu)'));
+  cells.forEach(function(cell, idx) {
+    cell.setAttribute('data-row', Math.floor(idx / size));
+    cell.setAttribute('data-col', idx % size);
+  });
+}
+
+function buildArrays() {
+  var arr = Array(size).fill(null);
+  arr = arr.map(function() {
+    return new Array(size).fill(null);
+  });
+  return arr;
+}
+
+function buildCells(){
+  board.forEach(function(rowArr, rowIdx) {
+    rowArr.forEach(function(slot, colIdx) {
+      board[rowIdx][colIdx] = new Cell(rowIdx, colIdx, board);
+    });
+  });
+  addBombs();
+  runCodeForAllCells(function(cell){
+    cell.calcAdjBombs();
+  });
+}
+
+function init() {
+  buildTable();
+  board = buildArrays();
+  buildCells();
+  bombCount = getBombCount();
+  elapsedTime = 0;
+  clearInterval(timerId);
+  timerId = null;
+  hitBomb = false;
+  winner = false;
+};
+
+function getBombCount() {
+  var count = 0;
+  board.forEach(function(row){
+    count += row.filter(function(cell) {
+      return cell.bomb;
+    }).length
+  });
+  return count;
+}
+
+function addBombs() {
+  var currentTotalBombs = sizeLookup[`${size}`].totalBombs;
+  while (currentTotalBombs !== 0) {
+    var row = Math.floor(Math.random() * size);
+    var col = Math.floor(Math.random() * size);
+    var currentCell = board[row][col]
+    if (!currentCell.bomb){
+      currentCell.bomb = true
+      currentTotalBombs -= 1
+    }
+  }
+}
+
+function getWinner() {
+  for (var row = 0; row<board.length; row++) {
+    for (var col = 0; col<board[0].length; col++) {
+      var cell = board[row][col];
+      if (!cell.revealed && !cell.bomb) return false;
+    }
+  } 
+  return true;
+}
+
+function render() {
+  document.getElementById('bomb-counter').innerText = bombCount.toString().padStart(3, '0');
+  var seconds = timeElapsed % 60;
+  var tdList = Array.from(document.querySelectorAll('[data-row]'));
+  tdList.forEach(function(td) {
+    var rowIdx = parseInt(td.getAttribute('data-row'));
+    var colIdx = parseInt(td.getAttribute('data-col'));
+    var cell = board[rowIdx][colIdx];
+    if (cell.flagged) {
+      td.innerHTML = flagImage;
+    } else if (cell.revealed) {
+      if (cell.bomb) {
+        td.innerHTML = bombImage;
+      } else if (cell.adjBombs) {
+        td.className = 'revealed'
+        td.style.color = colors[cell.adjBombs];
+        td.textContent = cell.adjBombs;
+      } else {
+        td.className = 'revealed'
+      }
+    } else {
+      td.innerHTML = '';
+    }
+  });
+  if (hitBomb) {
+    document.getElementById('reset').innerHTML = '<img src=dead-face.png>';
+    runCodeForAllCells(function(cell) {
+      if (!cell.bomb && cell.flagged) {
+        var td = document.querySelector(`[data-row="${cell.row}"][data-col="${cell.col}"]`);
+        td.innerHTML = wrongBombImage;
+      }
+    });
+  } else if (winner) {
+    document.getElementById('reset').innerHTML = '<img src=cool-face.png>';
+    clearInterval(timerId);
+  }
+}
+
+function runCodeForAllCells(cb) {
+  board.forEach(function(rowArr) {
+    rowArr.forEach(function(cell) {
+      cb(cell);
+    });
+  });
+}
+
+init();
+render();
+</script>
+</body>
+</html>

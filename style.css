@@ -1,0 +1,12 @@
+
+:root {
+	--main-color: #008080;
+	--desktop-background: #008080;
+}
+
+body {
+	overflow: hidden;
+  background: var(--desktop-background);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
