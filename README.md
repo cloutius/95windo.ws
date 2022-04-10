@@ -9,5 +9,5 @@ poor attempt at making smth cool
 - make programs highlight blue when clicked once
 - fix calender
 - make sound icon with working slider
-- add calcuatlor
-- make scaleable to different screensizes
+- add calculator
+- make scalable to different screensizes
