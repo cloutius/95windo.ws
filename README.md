@@ -1,9 +1,9 @@
 # 95windo.ws
 poor attempt at making smth cool
 
-!*WORK IN PROGRESS*!
+### !WORK IN PROGRESS!
 
-TODO:
+## TODO:
 make saveable notepad files
 make selection rectangle
 make programs highlight blue when clicked once
